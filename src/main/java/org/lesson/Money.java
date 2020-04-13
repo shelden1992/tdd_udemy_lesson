@@ -14,12 +14,12 @@ public class Money {
         this.currency = currency;
     }
 
-    public static Dollar dollar(int amount) {
-        return new Dollar(amount, Currency.USD);
+    public static Money dollar(int amount) {
+        return new Money(amount, Currency.USD);
     }
 
-    public static Franc franc(int amount) {
-        return new Franc(amount, Currency.CHF);
+    public static Money franc(int amount) {
+        return new Money(amount, Currency.CHF);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Money {
     }
 
     public Money times(int multiplier) {
-        return new Money(multiplier*amount, this.currency);
+        return new Money(multiplier * amount, this.currency);
     }
 
     public Currency currency() {
