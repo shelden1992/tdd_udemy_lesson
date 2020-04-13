@@ -5,19 +5,21 @@ import java.util.Objects;
 /**
  * Created by Shelupets Denys on 2020-04-13.
  */
-public abstract class Money {
+public class Money {
     protected int amount;
+    protected Currency currency;
 
-    public Money(int amount) {
+    public Money(int amount, Currency currency) {
         this.amount = amount;
+        this.currency = currency;
     }
 
     public static Dollar dollar(int amount) {
-        return new Dollar(amount);
+        return new Dollar(amount, Currency.USD);
     }
 
     public static Franc franc(int amount) {
-        return new Franc(amount);
+        return new Franc(amount, Currency.CHF);
     }
 
     @Override
@@ -25,15 +27,20 @@ public abstract class Money {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
-        return amount == money.amount;
+        return amount == money.amount &&
+                currency == money.currency;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amount);
+        return Objects.hash(amount, currency);
     }
 
-    public abstract Money times(int times);
+    public Money times(int multiplier) {
+        return new Money(multiplier*amount, this.currency);
+    }
 
-    public abstract Currency currency();
+    public Currency currency() {
+        return this.currency;
+    }
 }

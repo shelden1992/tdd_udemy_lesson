@@ -6,16 +6,9 @@ package org.lesson;
 public class Franc extends Money {
 
 
-    public Franc(int amount) {
-        super(amount);
+    public Franc(int amount, Currency currency) {
+        super(amount, currency);
     }
 
-    public Money times(int multiplier) {
-        return Money.franc(multiplier * amount);
-    }
 
-    @Override
-    public Currency currency() {
-        return Currency.CHF;
-    }
 }

@@ -6,17 +6,9 @@ package org.lesson;
 public class Dollar extends Money {
 
 
-    public Dollar(int amount) {
-        super(amount);
+    public Dollar(int amount, Currency currency) {
+        super(amount, currency);
     }
 
-    public Money times(int multiplier) {
-        return Money.dollar( multiplier * amount);
-    }
-
-    @Override
-    public Currency currency() {
-        return Currency.USD;
-    }
 
 }
