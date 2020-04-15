@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Created by Shelupets Denys on 2020-04-13.
  */
-public class Money {
+public class Money implements Expression {
     protected int amount;
     protected Currency currency;
 
@@ -42,5 +42,14 @@ public class Money {
 
     public Currency currency() {
         return this.currency;
+    }
+
+    public Expression plus(Money money) {
+        return new Sum(this, money);
+    }
+
+    @Override
+    public Money reduce(Currency currency) {
+        return new Money(amount, currency);
     }
 }
