@@ -36,7 +36,7 @@ public class Money implements Expression {
         return Objects.hash(amount, currency);
     }
 
-    public Money times(double multiplier) {
+    public Expression times(double multiplier) {
         return new Money(multiplier * amount, this.currency);
     }
 
@@ -44,7 +44,7 @@ public class Money implements Expression {
         return this.currency;
     }
 
-    public Expression plus(Money money) {
+    public Expression plus(Expression money) {
         return new Sum(this, money);
     }
 

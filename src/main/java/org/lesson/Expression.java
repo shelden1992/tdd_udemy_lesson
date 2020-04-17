@@ -6,4 +6,7 @@ package org.lesson;
 public interface Expression {
     Money reduce(Bank bank, Currency currency);
 
+    Expression plus(Expression franc);
+
+    Expression times(double multiplier);
 }

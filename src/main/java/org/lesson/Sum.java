@@ -4,24 +4,35 @@ package org.lesson;
  * Created by Shelupets Denys on 2020-04-13.
  */
 public class Sum implements Expression {
-    private Money augment;
-    private Money addmend;
+    private Expression augment;
+    private Expression addmend;
 
-    public Sum(Money augment, Money addmend) {
+    public Sum(Expression augment, Expression addmend) {
         this.augment = augment;
         this.addmend = addmend;
     }
 
-    public Money getAugment() {
+    public Expression getAugment() {
         return augment;
     }
 
-    public Money getAddmend() {
+    public Expression getAddmend() {
         return addmend;
     }
 
     @Override
     public Money reduce(Bank bank, Currency currency) {
-        return new Money(addmend.amount + augment.amount, currency);
+        double amount = augment.reduce(bank, currency).amount + addmend.reduce(bank, currency).amount;
+        return new Money(amount, currency);
+    }
+
+    @Override
+    public Expression plus(Expression addmend) {
+        return new Sum(this, addmend);
+    }
+
+    @Override
+    public Expression times(double multiplier) {
+        return new Sum(augment.times(multiplier), addmend.times(multiplier));
     }
 }
