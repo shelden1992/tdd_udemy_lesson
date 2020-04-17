@@ -21,7 +21,7 @@ public class Sum implements Expression {
     }
 
     @Override
-    public Money reduce(Currency currency) {
+    public Money reduce(Bank bank, Currency currency) {
         return new Money(addmend.amount + augment.amount, currency);
     }
 }

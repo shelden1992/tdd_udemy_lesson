@@ -6,19 +6,19 @@ import java.util.Objects;
  * Created by Shelupets Denys on 2020-04-13.
  */
 public class Money implements Expression {
-    protected int amount;
+    protected double amount;
     protected Currency currency;
 
-    public Money(int amount, Currency currency) {
+    public Money(double amount, Currency currency) {
         this.amount = amount;
         this.currency = currency;
     }
 
-    public static Money dollar(int amount) {
+    public static Money dollar(double amount) {
         return new Money(amount, Currency.USD);
     }
 
-    public static Money franc(int amount) {
+    public static Money franc(double amount) {
         return new Money(amount, Currency.CHF);
     }
 
@@ -36,7 +36,7 @@ public class Money implements Expression {
         return Objects.hash(amount, currency);
     }
 
-    public Money times(int multiplier) {
+    public Money times(double multiplier) {
         return new Money(multiplier * amount, this.currency);
     }
 
@@ -49,7 +49,8 @@ public class Money implements Expression {
     }
 
     @Override
-    public Money reduce(Currency currency) {
-        return new Money(amount, currency);
+    public Money reduce(Bank bank, Currency currency) {
+        double rate = bank.rate(this.currency, currency);
+        return new Money(amount / rate, currency);
     }
 }
