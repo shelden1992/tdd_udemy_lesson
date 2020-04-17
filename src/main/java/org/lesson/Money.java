@@ -6,8 +6,8 @@ import java.util.Objects;
  * Created by Shelupets Denys on 2020-04-13.
  */
 public class Money implements Expression {
-    protected double amount;
-    protected Currency currency;
+    double amount;
+    private Currency currency;
 
     public Money(double amount, Currency currency) {
         this.amount = amount;

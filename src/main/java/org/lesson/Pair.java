@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Created by Shelupets Denys on 2020-04-16.
  */
-public class Pair {
+class Pair {
     private Currency from;
     private Currency to;
 

@@ -8,8 +8,8 @@ import static java.util.Objects.isNull;
 /**
  * Created by Shelupets Denys on 2020-04-13.
  */
-public class Bank {
-    private Map<Pair, Double> currencyRateMap = new HashMap<>();
+class Bank {
+    private final Map<Pair, Double> currencyRateMap = new HashMap<>();
 
 
     public Money reduce(Expression source, Currency currency) {
